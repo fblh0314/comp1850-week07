@@ -1,7 +1,34 @@
 # Define a martHomeSystem class represents a smart home hub that manages multiple smart devices. 
 # Each device has different attributes and states, and the system can control them individually or as a group. 
 # This involves creating multiple methods to simulate controlling and monitoring a home’s lights, thermostat, and security system.
+class martHomeSystem:
+    def __init__(self, devices,):
+        self.devices = devices
+    def add_device(self, device_name, device_type):
+        if device_type == "lights":
+            self.devices[device_name] = "off"
+        elif device_type == "thermostat":
+            self.devices[device_name] = 72
+        elif device_type == "security":
+            self.devices[device_name] = "disarmed"
 
+    def control_device(self, device_name, action):
+        if device_name not in self.devices:
+            print("Device not found")
+            return
+        if isinstance(self.devices[device_name], str):
+            if action in ["on", "off"]:
+                self.devices[device_name] = action
+                print(f"{device_name} turned {action}")
+            elif action in ["arm", "disarm"]:
+                self.devices[device_name] = action
+                print(f"{device_name} is now {action}")
+        else:
+            self.devices[device_name] = action
+            print(f"{device_name} temperature set to {action}")
+
+    def __str__(self):
+        return ", ".join([f"{name}:{status}" for name, status in self.devices.items()])
 
 
 # This class has the following field:
