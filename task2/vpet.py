@@ -1,3 +1,7 @@
+# Name: Louis Morais-Jones
+#Student ID: 201988627
+
+
 # Define a class called VirtualPet with the following attributes:
 # (1) name - the name of the pet
 # (2) energy - the energy points for the pet, default value is 10
