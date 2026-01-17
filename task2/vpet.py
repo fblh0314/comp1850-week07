@@ -4,9 +4,48 @@
 # (3) hunger - the pet's hunger level, default value is 0
 # When an instance of VirtualPet is created, only the name is needed, as a minimum, for the __init__ method
 
+# Define a class called VirtualPet with the following attributes:
+# (1) name - the name of the pet
+# (2) energy - the energy points for the pet, default value is 10
+# (3) hunger - the pet's hunger level, default value is 0
+# When an instance of VirtualPet is created, only the name is needed, as a minimum, for the __init__ method
 
+class VirtualPet:
+    '''A class which defines a virtual pet with the attributes energy hunger and name and can carry out actions play, feed and sleep.'''
 
+    def __init__(self, name, energy = 10, hunger = 0):
+        self.energy = energy
+        self.hunger = hunger
+        self.name = name
 
+    def play(self):
+        '''Method to play with the pet, it reduces energy by 2 and increases hunger by 2, the method returns a message if the pet is too tired to play.'''   
+        if self.energy < 2:
+            return f"{self.name} is too tired to play!"
+        else:
+            self.energy -= 2
+            self.hunger += 2
+
+    def feed(self):
+        '''Method to feed the pet (reduces hunger by 3) and if hunger becomes negative it resets to 0 and returns a message stating the pet is overfed.'''    
+        self.hunger = self.hunger - 3
+        if self.hunger < 0:
+            self.hunger = 0
+            return f"{self.name} is overfed!"
+
+    def sleep(self):
+        '''Method to let the pet sleep, it increaes its' energy by 10.'''        
+        self.energy = self.energy + 10
+
+    def __str__(self):
+        '''Method which returns pet details including their name, ergy level and hunger level..'''   
+        return f"{self.name} has {self.energy} energy points and hunger level {self.hunger}"
+
+    def __eq__(self, other):
+        '''Method which returns true if all attributes are equal between two pets and false otherwise.'''  
+        return (self.name == other.name and 
+                self.energy == other.energy and 
+                self.hunger == other.hunger)
 
 # This class has the following methods:
 # (1) play() - If energy<2, report in the format "{name} is too tired to play!".
